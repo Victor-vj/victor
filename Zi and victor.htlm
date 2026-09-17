@@ -1,432 +1,353 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Us — A Little Corner of Our Story</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --cream: #FFF7F2;
-    --blush: #F6D7D9;
-    --rose: #C97B86;
-    --rose-deep: #A8586A;
-    --plum: #4A2E38;
-    --gold: #C9A063;
-    --white: #FFFFFF;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zi &amp; Victor | Our Story</title>
 
-  *{ box-sizing: border-box; margin:0; padding:0; }
-
-  html{ scroll-behavior: smooth; }
-
-  body{
-    background: var(--cream);
-    color: var(--plum);
-    font-family: 'Jost', sans-serif;
-    font-weight: 300;
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
-
-  h1, h2, h3, .serif{
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 500;
-    letter-spacing: 0.01em;
-  }
-
-  a{ color: inherit; }
-
-  img{ max-width: 100%; display:block; }
-
-  /* ---------- floating hearts (one orchestrated ambient layer) ---------- */
-  .hearts{
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    overflow: hidden;
-    z-index: 1;
-  }
-  .hearts span{
-    position: absolute;
-    bottom: -10%;
-    font-size: 1.2rem;
-    color: var(--rose);
-    opacity: 0.35;
-    animation: float-up linear infinite;
-  }
-  @keyframes float-up{
-    0%{ transform: translateY(0) translateX(0) rotate(0deg); opacity:0; }
-    10%{ opacity: 0.35; }
-    90%{ opacity: 0.35; }
-    100%{ transform: translateY(-115vh) translateX(20px) rotate(20deg); opacity:0; }
-  }
-  @media (prefers-reduced-motion: reduce){
-    .hearts{ display:none; }
-    *{ animation: none !important; transition: none !important; }
-  }
-
-  section{
-    position: relative;
-    z-index: 2;
-    padding: 6rem 1.5rem;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-
-  /* ---------- hero ---------- */
-  .hero{
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    max-width: none;
-    background:
-      radial-gradient(ellipse at 30% 20%, rgba(246,215,217,0.55), transparent 55%),
-      radial-gradient(ellipse at 75% 80%, rgba(201,160,99,0.15), transparent 50%),
-      var(--cream);
-    padding: 2rem 1.5rem;
-  }
-
-  .hero .eyebrow-mark{
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 1.05rem;
-    color: var(--rose-deep);
-    margin-bottom: 1rem;
-    opacity: 0;
-    animation: rise 1s ease-out 0.1s forwards;
-  }
-
-  .hero h1{
-    font-size: clamp(2.8rem, 8vw, 5.5rem);
-    line-height: 1.05;
-    color: var(--plum);
-    opacity: 0;
-    animation: rise 1s ease-out 0.35s forwards;
-  }
-
-  .hero h1 .amp{
-    display: block;
-    font-style: italic;
-    color: var(--rose-deep);
-    font-size: 0.5em;
-    margin: 0.3rem 0;
-  }
-
-  .hero p.tagline{
-    margin-top: 1.5rem;
-    font-size: clamp(1rem, 2.2vw, 1.25rem);
-    color: var(--plum);
-    max-width: 34ch;
-    opacity: 0;
-    animation: rise 1s ease-out 0.6s forwards;
-  }
-
-  .hero .scroll-hint{
-    margin-top: 3.5rem;
-    font-size: 0.85rem;
-    letter-spacing: 0.08em;
-    color: var(--rose-deep);
-    opacity: 0;
-    animation: rise 1s ease-out 0.9s forwards;
-  }
-
-  @keyframes rise{
-    from{ opacity:0; transform: translateY(16px); }
-    to{ opacity:1; transform: translateY(0); }
-  }
-
-  /* ---------- section headers ---------- */
-  .section-head{
-    text-align: center;
-    margin-bottom: 3rem;
-  }
-  .section-head .kicker{
-    font-style: italic;
-    font-family: 'Cormorant Garamond', serif;
-    color: var(--rose-deep);
-    font-size: 1.15rem;
-  }
-  .section-head h2{
-    font-size: clamp(2rem, 5vw, 3rem);
-    margin-top: 0.25rem;
-  }
-
-  /* ---------- gallery ---------- */
-  .gallery-grid{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-  }
-  .gallery-grid .tile{
-    aspect-ratio: 1 / 1;
-    border-radius: 6px;
-    background: linear-gradient(155deg, var(--blush), #eec7cb);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 1rem;
-    color: var(--rose-deep);
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 0.95rem;
-    border: 1px solid rgba(168,88,106,0.15);
-    transition: transform 0.35s ease, box-shadow 0.35s ease;
-  }
-  .gallery-grid .tile:hover{
-    transform: translateY(-4px);
-    box-shadow: 0 14px 30px rgba(168,88,106,0.18);
-  }
-  .gallery-grid .tile.tall{ grid-row: span 2; aspect-ratio: auto; }
-
-  .gallery-note{
-    text-align: center;
-    margin-top: 2rem;
-    font-size: 0.9rem;
-    color: var(--rose-deep);
-  }
-
-  @media (max-width: 640px){
-    .gallery-grid{ grid-template-columns: repeat(2, 1fr); }
-    .gallery-grid .tile.tall{ grid-row: span 1; }
-  }
-
-  /* ---------- timeline ---------- */
-  .timeline{
-    position: relative;
-    margin-top: 2rem;
-  }
-  .timeline::before{
-    content:"";
-    position: absolute;
-    left: 50%;
-    top: 0;
-    bottom: 0;
-    width: 1px;
-    background: linear-gradient(var(--blush), var(--gold), var(--blush));
-    transform: translateX(-50%);
-  }
-  .t-item{
-    position: relative;
-    width: 50%;
-    padding: 0 3rem 3.5rem;
-  }
-  .t-item:nth-child(odd){
-    left: 0;
-    text-align: right;
-  }
-  .t-item:nth-child(even){
-    left: 50%;
-    text-align: left;
-  }
-  .t-item::before{
-    content:"";
-    position: absolute;
-    top: 0.3rem;
-    width: 10px; height: 10px;
-    border-radius: 50%;
-    background: var(--rose-deep);
-    box-shadow: 0 0 0 5px var(--cream), 0 0 0 6px var(--blush);
-  }
-  .t-item:nth-child(odd)::before{ right: -5px; }
-  .t-item:nth-child(even)::before{ left: -5px; }
-  .t-item .t-date{
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    color: var(--rose-deep);
-    font-size: 1rem;
-    margin-bottom: 0.3rem;
-  }
-  .t-item h3{ font-size: 1.5rem; margin-bottom: 0.4rem; }
-  .t-item p{ font-size: 0.95rem; opacity: 0.85; }
-
-  @media (max-width: 700px){
-    .timeline::before{ left: 8px; }
-    .t-item, .t-item:nth-child(even){
-      width: 100%;
-      left: 0;
-      text-align: left;
-      padding-left: 2.2rem;
-      padding-right: 0.5rem;
+  <style>
+    :root {
+      --cream: #fff8f1;
+      --paper: #fffdf9;
+      --ink: #332b2a;
+      --muted: #806d68;
+      --rose: #c76868;
+      --rose-dark: #984d55;
+      --peach: #f6d6c4;
+      --line: #ecdcd4;
+      --shadow: 0 18px 50px rgba(126, 75, 68, 0.12);
     }
-    .t-item:nth-child(odd)::before,
-    .t-item:nth-child(even)::before{ left: 3px; }
-  }
 
-  /* ---------- love letter ---------- */
-  .letter-wrap{
-    max-width: 720px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  .envelope{
-    margin: 0 auto 2.5rem;
-    width: 110px;
-    height: 78px;
-    position: relative;
-    cursor: pointer;
-    filter: drop-shadow(0 10px 20px rgba(168,88,106,0.25));
-  }
-  .envelope .body{
-    position: absolute; inset:0;
-    background: var(--white);
-    border: 1px solid var(--blush);
-    border-radius: 4px;
-  }
-  .envelope .flap{
-    position: absolute;
-    top:0; left:0; right:0;
-    height: 0;
-    border-left: 55px solid transparent;
-    border-right: 55px solid transparent;
-    border-top: 42px solid var(--blush);
-  }
-  .envelope .heart{
-    position: absolute;
-    left: 50%; top: 62%;
-    transform: translate(-50%,-50%);
-    color: var(--rose-deep);
-    font-size: 1.1rem;
-  }
-  .letter-card{
-    background: var(--white);
-    border: 1px solid var(--blush);
-    border-radius: 8px;
-    padding: 3rem 2.5rem;
-    text-align: left;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.25rem;
-    line-height: 1.85;
-    color: var(--plum);
-    box-shadow: 0 20px 50px rgba(168,88,106,0.12);
-  }
-  .letter-card .sign-off{
-    margin-top: 1.5rem;
-    font-style: italic;
-    color: var(--rose-deep);
-  }
+    * { box-sizing: border-box; }
 
-  /* ---------- footer ---------- */
-  footer{
-    text-align: center;
-    padding: 3rem 1.5rem 4rem;
-    font-size: 0.85rem;
-    color: var(--rose-deep);
-    position: relative;
-    z-index: 2;
-  }
-</style>
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--cream);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.7;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      opacity: .3;
+      pointer-events: none;
+      background-image: radial-gradient(#d7aaa0 0.7px, transparent 0.7px);
+      background-size: 22px 22px;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 7%;
+      background: rgba(255, 248, 241, .88);
+      border-bottom: 1px solid rgba(236, 220, 212, .8);
+      backdrop-filter: blur(12px);
+    }
+
+    .brand {
+      color: var(--rose-dark);
+      font-size: 1.25rem;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .links { display: flex; gap: 25px; }
+
+    .links a {
+      color: var(--muted);
+      font-size: .85rem;
+      text-decoration: none;
+      transition: color .2s ease;
+    }
+
+    .links a:hover { color: var(--rose); }
+
+    .hero {
+      min-height: 86vh;
+      display: grid;
+      place-items: center;
+      padding: 80px 7%;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(255,248,241,.7), rgba(246,214,196,.65));
+    }
+
+    .hero-content { max-width: 780px; }
+
+    .eyebrow {
+      margin: 0 0 18px;
+      color: var(--rose);
+      font: bold .78rem/1.2 Arial, sans-serif;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--rose-dark);
+      font-size: clamp(4rem, 13vw, 9rem);
+      font-weight: normal;
+      line-height: .95;
+    }
+
+    .amp {
+      color: var(--rose);
+      font-style: italic;
+      font-size: .6em;
+    }
+
+    .hero p {
+      max-width: 520px;
+      margin: 28px auto 34px;
+      color: var(--muted);
+      font-size: 1.18rem;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 13px 25px;
+      border: 1px solid var(--rose);
+      border-radius: 30px;
+      color: white;
+      background: var(--rose);
+      font: bold .78rem Arial, sans-serif;
+      letter-spacing: .08em;
+      text-decoration: none;
+      text-transform: uppercase;
+      box-shadow: 0 9px 20px rgba(199, 104, 104, .2);
+      transition: transform .2s ease, background .2s ease;
+    }
+
+    .button:hover {
+      background: var(--rose-dark);
+      transform: translateY(-2px);
+    }
+
+    section {
+      max-width: 1060px;
+      margin: auto;
+      padding: 90px 7%;
+    }
+
+    .section-heading { margin-bottom: 35px; }
+
+    h2 {
+      margin: 5px 0 10px;
+      color: var(--rose-dark);
+      font-size: clamp(2.3rem, 5vw, 3.8rem);
+      font-weight: normal;
+      line-height: 1.05;
+    }
+
+    .section-heading p { color: var(--muted); }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: 155px;
+      gap: 14px;
+    }
+
+    .memory {
+      position: relative;
+      display: flex;
+      align-items: end;
+      overflow: hidden;
+      padding: 20px;
+      border-radius: 8px;
+      color: white;
+      background: linear-gradient(145deg, #eaa99b, #9e5b68);
+      box-shadow: var(--shadow);
+    }
+
+    .memory::before {
+      content: "♥";
+      position: absolute;
+      top: 18px;
+      right: 20px;
+      color: rgba(255,255,255,.5);
+      font-size: 2rem;
+    }
+
+    .memory:nth-child(2) { background: linear-gradient(145deg, #eecb9d, #b87865); }
+    .memory:nth-child(3) { background: linear-gradient(145deg, #adbdc4, #64757f); }
+    .memory:nth-child(4) { background: linear-gradient(145deg, #d7a4b5, #78516d); }
+    .memory:nth-child(5) { background: linear-gradient(145deg, #f0c5a5, #c77972); }
+    .memory:nth-child(6) { background: linear-gradient(145deg, #b6c4a9, #73816d); }
+
+    .memory.wide { grid-column: span 2; }
+    .memory.tall { grid-row: span 2; }
+
+    .memory strong {
+      position: relative;
+      font-size: 1.12rem;
+      font-weight: normal;
+    }
+
+    .timeline {
+      position: relative;
+      margin-top: 45px;
+      padding-left: 30px;
+      border-left: 1px solid var(--rose);
+    }
+
+    .event { position: relative; margin: 0 0 42px; }
+    .event:last-child { margin-bottom: 0; }
+
+    .event::before {
+      content: "";
+      position: absolute;
+      left: -37px;
+      top: 6px;
+      width: 13px;
+      height: 13px;
+      border: 4px solid var(--cream);
+      border-radius: 50%;
+      background: var(--rose);
+      box-shadow: 0 0 0 1px var(--rose);
+    }
+
+    .date {
+      color: var(--rose);
+      font: bold .75rem Arial, sans-serif;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+
+    .event h3 { margin: 6px 0 5px; font-size: 1.5rem; font-weight: normal; }
+    .event p { margin: 0; color: var(--muted); }
+
+    .letter-wrap { text-align: center; }
+
+    .letter {
+      max-width: 700px;
+      margin: 35px auto 0;
+      padding: clamp(30px, 7vw, 70px);
+      text-align: left;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      transform: rotate(-.5deg);
+    }
+
+    .letter::before {
+      content: "♥";
+      display: block;
+      margin-bottom: 18px;
+      color: var(--rose);
+      font-size: 2rem;
+      text-align: center;
+    }
+
+    .letter p { margin: 0 0 20px; color: #5d4c48; font-size: 1.12rem; }
+    .signature { color: var(--rose-dark) !important; font-style: italic; }
+
+    footer {
+      padding: 35px 7%;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      text-align: center;
+      font-size: .9rem;
+    }
+
+    @media (max-width: 650px) {
+      .nav { padding: 15px 5%; }
+      .links { gap: 12px; }
+      .links a { font-size: .72rem; }
+      section { padding: 65px 5%; }
+      .gallery { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 140px; }
+      .memory.wide { grid-column: span 2; }
+      .memory.tall { grid-row: span 2; }
+      .hero { min-height: 78vh; padding: 60px 5%; }
+    }
+  </style>
 </head>
 <body>
-
-<div class="hearts" id="hearts"></div>
-
-<!-- HERO -->
-<section class="hero">
-  <p class="eyebrow-mark">a little corner of the internet, just for us</p>
-  <h1>Your Name <span class="amp">&amp;</span> Her Name</h1>
-  <p class="tagline">Every love story is beautiful, but ours is my favorite.</p>
-  <p class="scroll-hint">scroll down ↓</p>
-</section>
-
-<!-- GALLERY -->
-<section id="gallery">
-  <div class="section-head">
-    <p class="kicker">moments</p>
-    <h2>Us, in Pictures</h2>
-  </div>
-  <div class="gallery-grid">
-    <div class="tile tall">add a favorite photo here</div>
-    <div class="tile">add a photo</div>
-    <div class="tile">add a video</div>
-    <div class="tile">add a photo</div>
-    <div class="tile tall">add a favorite photo here</div>
-    <div class="tile">add a photo</div>
-    <div class="tile">add a photo</div>
-    <div class="tile">add a video</div>
-  </div>
-  <p class="gallery-note">this is a placeholder grid — send over your photos and videos and I'll drop them right in</p>
-</section>
-
-<!-- OUR STORY -->
-<section id="story">
-  <div class="section-head">
-    <p class="kicker">our story</p>
-    <h2>How We Got Here</h2>
-  </div>
-  <div class="timeline">
-    <div class="t-item">
-      <p class="t-date">the beginning</p>
-      <h3>How We Met</h3>
-      <p>Tell the story of the day it all started — where you were, how it happened, what you remember most.</p>
+  <nav class="nav" aria-label="Main navigation">
+    <a class="brand" href="#top">Z &amp; V</a>
+    <div class="links">
+      <a href="#memories">Memories</a>
+      <a href="#story">Our story</a>
+      <a href="#letter">Letter</a>
     </div>
-    <div class="t-item">
-      <p class="t-date">early days</p>
-      <h3>The First Date</h3>
-      <p>What did you do, what did you talk about, when did you know this was different?</p>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="hero-content">
+      <p class="eyebrow">A little corner of the internet</p>
+      <h1>Zi <span class="amp">&amp;</span> Victor</h1>
+      <p>Two hearts, one beautiful story, and countless little moments worth remembering.</p>
+      <a class="button" href="#memories">Explore our story</a>
     </div>
-    <div class="t-item">
-      <p class="t-date">a favorite memory</p>
-      <h3>A Trip, a Night, a Moment</h3>
-      <p>Pick a memory that still makes you smile and tell it here.</p>
-    </div>
-    <div class="t-item">
-      <p class="t-date">today</p>
-      <h3>Right Now</h3>
-      <p>Where you both are now, and what you're looking forward to together.</p>
-    </div>
-  </div>
-</section>
+  </header>
 
-<!-- LOVE LETTER -->
-<section id="letter">
-  <div class="section-head">
-    <p class="kicker">for her</p>
-    <h2>A Little Letter</h2>
-  </div>
-  <div class="letter-wrap">
-    <div class="letter-card">
-      <p>My love,</p>
-      <br>
-      <p>This is where your letter goes — write her whatever you want her to read when she opens this. Tell her what she means to you, an inside joke, a promise, anything at all.</p>
-      <p class="sign-off">Always yours,<br>Your Name</p>
-    </div>
-  </div>
-</section>
+  <main>
+    <section id="memories">
+      <div class="section-heading">
+        <p class="eyebrow">The best kind of memories</p>
+        <h2>Little moments,<br>big feelings.</h2>
+        <p>A collection of the places, days, and simple moments that make us smile.</p>
+      </div>
 
-<footer>
-  made with love, for her 🤍
-</footer>
+      <div class="gallery" aria-label="A collection of memories">
+        <div class="memory tall"><strong>Our favorite adventures</strong></div>
+        <div class="memory wide"><strong>Laughing until it hurts</strong></div>
+        <div class="memory"><strong>Golden-hour walks</strong></div>
+        <div class="memory"><strong>Just us</strong></div>
+        <div class="memory wide"><strong>Every day is better together</strong></div>
+        <div class="memory"><strong>Always my person</strong></div>
+      </div>
+    </section>
 
-<script>
-  // ambient floating hearts — decorative, respects reduced motion via CSS above
-  const heartsContainer = document.getElementById('hearts');
-  const heartChars = ['♡','♥'];
-  const count = window.innerWidth < 640 ? 8 : 14;
-  for(let i=0; i<count; i++){
-    const span = document.createElement('span');
-    span.textContent = heartChars[Math.floor(Math.random()*heartChars.length)];
-    span.style.left = Math.random()*100 + 'vw';
-    span.style.fontSize = (0.8 + Math.random()*1.2) + 'rem';
-    span.style.animationDuration = (14 + Math.random()*12) + 's';
-    span.style.animationDelay = (Math.random()*10) + 's';
-    heartsContainer.appendChild(span);
-  }
+    <section id="story">
+      <div class="section-heading">
+        <p class="eyebrow">How it all began</p>
+        <h2>Our story</h2>
+        <p>The moments that brought us here and all the ones still waiting ahead.</p>
+      </div>
 
-  // envelope click -> gentle reveal pulse on the letter card
-  const envelope = document.querySelector('.envelope');
-  if(envelope){
-    envelope.addEventListener('click', () => {
-      document.querySelector('.letter-card').scrollIntoView({behavior:'smooth', block:'center'});
-    });
-  }
-</script>
+      <div class="timeline">
+        <article class="event">
+          <span class="date">The beginning</span>
+          <h3>When our paths crossed</h3>
+          <p>Somehow, in a world full of people, we found each other. That was the start of something special.</p>
+        </article>
+        <article class="event">
+          <span class="date">A little later</span>
+          <h3>More than a coincidence</h3>
+          <p>Every conversation became a favorite, and every ordinary day started to feel a little brighter.</p>
+        </article>
+        <article class="event">
+          <span class="date">Right now</span>
+          <h3>Still choosing you</h3>
+          <p>We are writing the best part of our story one laugh, one adventure, and one memory at a time.</p>
+        </article>
+      </div>
+    </section>
 
+    <section class="letter-wrap" id="letter">
+      <p class="eyebrow">A note from the heart</p>
+      <h2>For you, always.</h2>
+      <div class="letter">
+        <p>Dear Victor,</p>
+        <p>Thank you for making the ordinary feel magical. I love the way we can turn the smallest moments into memories I want to keep forever.</p>
+        <p>Whatever comes next, I am grateful that I get to experience it with you. You are my favorite place to be, my safest feeling, and my greatest adventure.</p>
+        <p class="signature">With all my love,<br>Zi ♥</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Made with love for Zi &amp; Victor · Always and forever
+  </footer>
 </body>
 </html>
