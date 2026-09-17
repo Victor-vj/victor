@@ -1,353 +1,450 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zi &amp; Victor | Our Story</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Victor dos Santos Buza | Victor vj</title>
+<style>
+  :root {
+    --bg: #0a0e0a;
+    --panel: #0d1510;
+    --green: #00ff41;
+    --green-dim: #0a8f2c;
+    --green-faint: #05451a;
+    --text: #c8ffd4;
+  }
 
-  <style>
-    :root {
-      --cream: #fff8f1;
-      --paper: #fffdf9;
-      --ink: #332b2a;
-      --muted: #806d68;
-      --rose: #c76868;
-      --rose-dark: #984d55;
-      --peach: #f6d6c4;
-      --line: #ecdcd4;
-      --shadow: 0 18px 50px rgba(126, 75, 68, 0.12);
-    }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
 
-    html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Courier New", Consolas, monospace;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
 
-    body {
-      margin: 0;
-      color: var(--ink);
-      background: var(--cream);
-      font-family: Georgia, "Times New Roman", serif;
-      line-height: 1.7;
-    }
+  /* ===== Matrix rain background ===== */
+  #matrix {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+    opacity: 0.35;
+  }
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      opacity: .3;
-      pointer-events: none;
-      background-image: radial-gradient(#d7aaa0 0.7px, transparent 0.7px);
-      background-size: 22px 22px;
-    }
+  .content { position: relative; z-index: 1; }
 
-    .nav {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 18px 7%;
-      background: rgba(255, 248, 241, .88);
-      border-bottom: 1px solid rgba(236, 220, 212, .8);
-      backdrop-filter: blur(12px);
-    }
+  /* ===== Navbar ===== */
+  nav {
+    position: sticky;
+    top: 0;
+    background: rgba(5, 10, 6, 0.9);
+    border-bottom: 1px solid var(--green-dim);
+    backdrop-filter: blur(4px);
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    padding: 16px;
+    flex-wrap: wrap;
+  }
 
-    .brand {
-      color: var(--rose-dark);
-      font-size: 1.25rem;
-      font-weight: bold;
-      text-decoration: none;
-    }
+  nav a {
+    color: var(--green);
+    text-decoration: none;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    text-shadow: 0 0 6px var(--green-dim);
+    transition: 0.2s;
+  }
 
-    .links { display: flex; gap: 25px; }
+  nav a:hover {
+    color: #fff;
+    text-shadow: 0 0 12px var(--green);
+  }
 
-    .links a {
-      color: var(--muted);
-      font-size: .85rem;
-      text-decoration: none;
-      transition: color .2s ease;
-    }
+  /* ===== Section shell ===== */
+  section {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 80px 24px;
+    border-bottom: 1px dashed var(--green-faint);
+  }
 
-    .links a:hover { color: var(--rose); }
+  .tag {
+    color: var(--green-dim);
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    margin-bottom: 8px;
+  }
 
-    .hero {
-      min-height: 86vh;
-      display: grid;
-      place-items: center;
-      padding: 80px 7%;
-      text-align: center;
-      background: linear-gradient(135deg, rgba(255,248,241,.7), rgba(246,214,196,.65));
-    }
+  h1, h2 {
+    color: var(--green);
+    text-shadow: 0 0 10px rgba(0,255,65,0.4);
+  }
 
-    .hero-content { max-width: 780px; }
+  /* ===== Home ===== */
+  #home {
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-bottom: none;
+  }
 
-    .eyebrow {
-      margin: 0 0 18px;
-      color: var(--rose);
-      font: bold .78rem/1.2 Arial, sans-serif;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-    }
+  .terminal-box {
+    border: 1px solid var(--green-dim);
+    background: rgba(0, 20, 8, 0.6);
+    padding: 24px 32px;
+    border-radius: 4px;
+    box-shadow: 0 0 24px rgba(0,255,65,0.15);
+  }
 
-    h1 {
-      margin: 0;
-      color: var(--rose-dark);
-      font-size: clamp(4rem, 13vw, 9rem);
-      font-weight: normal;
-      line-height: .95;
-    }
+  .prompt::before {
+    content: "> ";
+    color: var(--green-dim);
+  }
 
-    .amp {
-      color: var(--rose);
-      font-style: italic;
-      font-size: .6em;
-    }
+  h1#name {
+    font-size: 2.4rem;
+    margin: 10px 0;
+  }
 
-    .hero p {
-      max-width: 520px;
-      margin: 28px auto 34px;
-      color: var(--muted);
-      font-size: 1.18rem;
-    }
+  .cursor {
+    display: inline-block;
+    width: 10px;
+    background: var(--green);
+    animation: blink 1s steps(1) infinite;
+    margin-left: 4px;
+  }
 
-    .button {
-      display: inline-block;
-      padding: 13px 25px;
-      border: 1px solid var(--rose);
-      border-radius: 30px;
-      color: white;
-      background: var(--rose);
-      font: bold .78rem Arial, sans-serif;
-      letter-spacing: .08em;
-      text-decoration: none;
-      text-transform: uppercase;
-      box-shadow: 0 9px 20px rgba(199, 104, 104, .2);
-      transition: transform .2s ease, background .2s ease;
-    }
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
 
-    .button:hover {
-      background: var(--rose-dark);
-      transform: translateY(-2px);
-    }
+  .subtitle {
+    color: var(--green-dim);
+    letter-spacing: 2px;
+  }
 
-    section {
-      max-width: 1060px;
-      margin: auto;
-      padding: 90px 7%;
-    }
+  /* ===== About ===== */
+  .about-grid {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
 
-    .section-heading { margin-bottom: 35px; }
+  .about-text { flex: 1; min-width: 260px; }
 
-    h2 {
-      margin: 5px 0 10px;
-      color: var(--rose-dark);
-      font-size: clamp(2.3rem, 5vw, 3.8rem);
-      font-weight: normal;
-      line-height: 1.05;
-    }
+  .avatar {
+    width: 160px;
+    height: 160px;
+    border: 2px solid var(--green-dim);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: var(--green);
+    box-shadow: 0 0 20px rgba(0,255,65,0.2);
+    background: #061008;
+  }
 
-    .section-heading p { color: var(--muted); }
+  .quote {
+    margin-top: 18px;
+    padding-left: 14px;
+    border-left: 3px solid var(--green-dim);
+    color: var(--green-dim);
+    font-style: italic;
+  }
 
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-auto-rows: 155px;
-      gap: 14px;
-    }
+  /* ===== Term cards (Quiz / Exam / Lab) ===== */
+  .term-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
 
-    .memory {
-      position: relative;
-      display: flex;
-      align-items: end;
-      overflow: hidden;
-      padding: 20px;
-      border-radius: 8px;
-      color: white;
-      background: linear-gradient(145deg, #eaa99b, #9e5b68);
-      box-shadow: var(--shadow);
-    }
+  .term-btn {
+    background: transparent;
+    border: 1px solid var(--green-dim);
+    color: var(--green-dim);
+    padding: 8px 16px;
+    cursor: pointer;
+    font-family: inherit;
+    letter-spacing: 1px;
+    border-radius: 3px;
+  }
 
-    .memory::before {
-      content: "♥";
-      position: absolute;
-      top: 18px;
-      right: 20px;
-      color: rgba(255,255,255,.5);
-      font-size: 2rem;
-    }
+  .term-btn.active {
+    background: var(--green-dim);
+    color: #000;
+    font-weight: bold;
+  }
 
-    .memory:nth-child(2) { background: linear-gradient(145deg, #eecb9d, #b87865); }
-    .memory:nth-child(3) { background: linear-gradient(145deg, #adbdc4, #64757f); }
-    .memory:nth-child(4) { background: linear-gradient(145deg, #d7a4b5, #78516d); }
-    .memory:nth-child(5) { background: linear-gradient(145deg, #f0c5a5, #c77972); }
-    .memory:nth-child(6) { background: linear-gradient(145deg, #b6c4a9, #73816d); }
+  .term-panel { display: none; }
+  .term-panel.active { display: block; animation: fadeIn 0.3s ease; }
 
-    .memory.wide { grid-column: span 2; }
-    .memory.tall { grid-row: span 2; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 
-    .memory strong {
-      position: relative;
-      font-size: 1.12rem;
-      font-weight: normal;
-    }
+  .record {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid var(--green-faint);
+    background: rgba(0, 20, 8, 0.4);
+    padding: 14px 18px;
+    border-radius: 4px;
+    margin-bottom: 12px;
+  }
 
-    .timeline {
-      position: relative;
-      margin-top: 45px;
-      padding-left: 30px;
-      border-left: 1px solid var(--rose);
-    }
+  .record .label { color: var(--text); }
+  .record .score { color: var(--green); font-weight: bold; }
+  .record .date { color: var(--green-dim); font-size: 0.8rem; }
 
-    .event { position: relative; margin: 0 0 42px; }
-    .event:last-child { margin-bottom: 0; }
+  .record a {
+    color: var(--green);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--green-dim);
+  }
 
-    .event::before {
-      content: "";
-      position: absolute;
-      left: -37px;
-      top: 6px;
-      width: 13px;
-      height: 13px;
-      border: 4px solid var(--cream);
-      border-radius: 50%;
-      background: var(--rose);
-      box-shadow: 0 0 0 1px var(--rose);
-    }
-
-    .date {
-      color: var(--rose);
-      font: bold .75rem Arial, sans-serif;
-      letter-spacing: .15em;
-      text-transform: uppercase;
-    }
-
-    .event h3 { margin: 6px 0 5px; font-size: 1.5rem; font-weight: normal; }
-    .event p { margin: 0; color: var(--muted); }
-
-    .letter-wrap { text-align: center; }
-
-    .letter {
-      max-width: 700px;
-      margin: 35px auto 0;
-      padding: clamp(30px, 7vw, 70px);
-      text-align: left;
-      background: var(--paper);
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow);
-      transform: rotate(-.5deg);
-    }
-
-    .letter::before {
-      content: "♥";
-      display: block;
-      margin-bottom: 18px;
-      color: var(--rose);
-      font-size: 2rem;
-      text-align: center;
-    }
-
-    .letter p { margin: 0 0 20px; color: #5d4c48; font-size: 1.12rem; }
-    .signature { color: var(--rose-dark) !important; font-style: italic; }
-
-    footer {
-      padding: 35px 7%;
-      color: var(--muted);
-      border-top: 1px solid var(--line);
-      text-align: center;
-      font-size: .9rem;
-    }
-
-    @media (max-width: 650px) {
-      .nav { padding: 15px 5%; }
-      .links { gap: 12px; }
-      .links a { font-size: .72rem; }
-      section { padding: 65px 5%; }
-      .gallery { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 140px; }
-      .memory.wide { grid-column: span 2; }
-      .memory.tall { grid-row: span 2; }
-      .hero { min-height: 78vh; padding: 60px 5%; }
-    }
-  </style>
+  footer {
+    text-align: center;
+    padding: 30px;
+    color: var(--green-dim);
+    font-size: 0.8rem;
+    position: relative;
+    z-index: 1;
+  }
+</style>
 </head>
 <body>
-  <nav class="nav" aria-label="Main navigation">
-    <a class="brand" href="#top">Z &amp; V</a>
-    <div class="links">
-      <a href="#memories">Memories</a>
-      <a href="#story">Our story</a>
-      <a href="#letter">Letter</a>
+
+<canvas id="matrix"></canvas>
+
+<div class="content">
+
+<nav>
+  <a href="#home">HOME</a>
+  <a href="#about">ABOUT ME</a>
+  <a href="#quiz">QUIZ</a>
+  <a href="#exam">EXAM</a>
+  <a href="#lab">LAB</a>
+</nav>
+
+<!-- ===================== HOME ===================== -->
+<section id="home">
+  <div class="terminal-box">
+    <p class="prompt">who am i</p>
+    <h1 id="name">VICTOR DOS SANTOS BUZA</h1>
+    <p class="subtitle">BS Computer Science &mdash; future cybersecurity </p>
+  </div>
+</section>
+
+<!-- ===================== ABOUT ===================== -->
+<section id="about">
+  <p class="tag">// ABOUT ME</p>
+  <h2>Who I Am</h2>
+  <div class="about-grid" style="margin-top: 20px;">
+    <div class="avatar">VB</div>
+    <div class="about-text">
+      <p>
+        Hi, I'm <strong>Victor dos Santos Buza</strong>, a BS Computer Science
+        student. and i like to learn new stuff, and coding &mdash; e.g. programming.
+      </p>
+      <p style="margin-top: 12px;">
+        I would like to learn how to program and how to hack as well, but
+        what I want to know now is cybersecurity.
+      </p>
+      <p class="quote">
+        "Replace this with a quote you like." &mdash; Someone
+      </p>
     </div>
-  </nav>
+  </div>
+</section>
 
-  <header class="hero" id="top">
-    <div class="hero-content">
-      <p class="eyebrow">A little corner of the internet</p>
-      <h1>Zi <span class="amp">&amp;</span> Victor</h1>
-      <p>Two hearts, one beautiful story, and countless little moments worth remembering.</p>
-      <a class="button" href="#memories">Explore our story</a>
+<!-- ===================== QUIZ ===================== -->
+<section id="quiz">
+  <p class="tag">// QUIZ RECORDS</p>
+  <h2>Quiz Scores</h2>
+
+  <div class="term-tabs" data-group="quiz">
+    <button class="term-btn active" data-target="quiz-prelim">PRELIM</button>
+    <button class="term-btn" data-target="quiz-midterm">MIDTERM</button>
+    <button class="term-btn" data-target="quiz-finals">FINALS</button>
+  </div>
+
+  <div class="term-panel active" id="quiz-prelim">
+    <div class="record">
+      <span class="label">QUIZ 1 (ONLINE)</span>
+      <span class="score">— / 20</span>
+      <span class="date">DATE HERE</span>
     </div>
-  </header>
+    <div class="record">
+      <span class="label">QUIZ 2 - VIRTUALIZATION</span>
+      <span class="score">19 / 20</span>
+      <span class="date">DATE HERE</span>
+    </div>
+    <div class="record">
+      <span class="label">QUIZ 3 - VIRTUAL MACHINE</span>
+      <span class="score">16 / 20</span>
+      <span class="date">DATE HERE</span>
+    </div>
+    <div class="record">
+      <span class="label">LONG QUIZ</span>
+      <span class="score">31 / 40</span>
+      <span class="date">DATE HERE</span>
+    </div>
+  </div>
+  <div class="term-panel" id="quiz-midterm">
+    <div class="record">
+      <span class="label">QUIZ 1</span>
+      <span class="score">—</span>
+      <span class="date">—</span>
+    </div>
+  </div>
+  <div class="term-panel" id="quiz-finals">
+    <div class="record">
+      <span class="label">QUIZ 1</span>
+      <span class="score">—</span>
+      <span class="date">—</span>
+    </div>
+  </div>
+</section>
 
-  <main>
-    <section id="memories">
-      <div class="section-heading">
-        <p class="eyebrow">The best kind of memories</p>
-        <h2>Little moments,<br>big feelings.</h2>
-        <p>A collection of the places, days, and simple moments that make us smile.</p>
-      </div>
+<!-- ===================== EXAM ===================== -->
+<section id="exam">
+  <p class="tag">// EXAM RECORDS</p>
+  <h2>Exams</h2>
 
-      <div class="gallery" aria-label="A collection of memories">
-        <div class="memory tall"><strong>Our favorite adventures</strong></div>
-        <div class="memory wide"><strong>Laughing until it hurts</strong></div>
-        <div class="memory"><strong>Golden-hour walks</strong></div>
-        <div class="memory"><strong>Just us</strong></div>
-        <div class="memory wide"><strong>Every day is better together</strong></div>
-        <div class="memory"><strong>Always my person</strong></div>
-      </div>
-    </section>
+  <div class="term-tabs" data-group="exam">
+    <button class="term-btn active" data-target="exam-prelim">PRELIM</button>
+    <button class="term-btn" data-target="exam-midterm">MIDTERM</button>
+    <button class="term-btn" data-target="exam-finals">FINALS</button>
+  </div>
 
-    <section id="story">
-      <div class="section-heading">
-        <p class="eyebrow">How it all began</p>
-        <h2>Our story</h2>
-        <p>The moments that brought us here and all the ones still waiting ahead.</p>
-      </div>
+  <div class="term-panel active" id="exam-prelim">
+    <div class="record">
+      <span class="label">PRELIM EXAM</span>
+      <span class="score">— / 100</span>
+      <span class="date">DATE HERE</span>
+    </div>
+  </div>
+  <div class="term-panel" id="exam-midterm">
+    <div class="record">
+      <span class="label">MIDTERM EXAM</span>
+      <span class="score">—</span>
+      <span class="date">—</span>
+    </div>
+  </div>
+  <div class="term-panel" id="exam-finals">
+    <div class="record">
+      <span class="label">FINAL EXAM</span>
+      <span class="score">—</span>
+      <span class="date">—</span>
+    </div>
+  </div>
+</section>
 
-      <div class="timeline">
-        <article class="event">
-          <span class="date">The beginning</span>
-          <h3>When our paths crossed</h3>
-          <p>Somehow, in a world full of people, we found each other. That was the start of something special.</p>
-        </article>
-        <article class="event">
-          <span class="date">A little later</span>
-          <h3>More than a coincidence</h3>
-          <p>Every conversation became a favorite, and every ordinary day started to feel a little brighter.</p>
-        </article>
-        <article class="event">
-          <span class="date">Right now</span>
-          <h3>Still choosing you</h3>
-          <p>We are writing the best part of our story one laugh, one adventure, and one memory at a time.</p>
-        </article>
-      </div>
-    </section>
+<!-- ===================== LAB ===================== -->
+<section id="lab" style="border-bottom: none;">
+  <p class="tag">// LABORATORY</p>
+  <h2>Laboratory Work</h2>
 
-    <section class="letter-wrap" id="letter">
-      <p class="eyebrow">A note from the heart</p>
-      <h2>For you, always.</h2>
-      <div class="letter">
-        <p>Dear Victor,</p>
-        <p>Thank you for making the ordinary feel magical. I love the way we can turn the smallest moments into memories I want to keep forever.</p>
-        <p>Whatever comes next, I am grateful that I get to experience it with you. You are my favorite place to be, my safest feeling, and my greatest adventure.</p>
-        <p class="signature">With all my love,<br>Zi ♥</p>
-      </div>
-    </section>
-  </main>
+  <div class="term-tabs" data-group="lab">
+    <button class="term-btn active" data-target="lab-prelim">PRELIM</button>
+    <button class="term-btn" data-target="lab-midterm">MIDTERM</button>
+    <button class="term-btn" data-target="lab-finals">FINALS</button>
+  </div>
 
-  <footer>
-    Made with love for Zi &amp; Victor · Always and forever
-  </footer>
+  <div class="term-panel active" id="lab-prelim">
+    <div class="record">
+      <span class="label">LAB NO. 1</span>
+      <a href="#" target="_blank">Open file &rarr;</a>
+    </div>
+  </div>
+  <div class="term-panel" id="lab-midterm">
+    <div class="record">
+      <span class="label">LAB NO. 1</span>
+      <a href="#" target="_blank">Open file &rarr;</a>
+    </div>
+  </div>
+  <div class="term-panel" id="lab-finals">
+    <div class="record">
+      <span class="label">LAB NO. 1</span>
+      <a href="#" target="_blank">Open file &rarr;</a>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<footer>
+  &lt;/&gt; Victor dos Santos Buza &mdash; BSCS Portfolio
+</footer>
+
+<script>
+  // ===== Matrix rain effect =====
+  const canvas = document.getElementById("matrix");
+  const ctx = canvas.getContext("2d");
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const chars = "01アイウエオカキクケコサシスセソABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  const fontSize = 16;
+  let columns = Math.floor(canvas.width / fontSize);
+  let drops = new Array(columns).fill(1);
+
+  function draw() {
+    ctx.fillStyle = "rgba(10, 14, 10, 0.08)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "#00ff41";
+    ctx.font = fontSize + "px monospace";
+
+    drops.forEach((y, i) => {
+      const text = chars[Math.floor(Math.random() * chars.length)];
+      ctx.fillText(text, i * fontSize, y * fontSize);
+      if (y * fontSize > canvas.height && Math.random() > 0.975) {
+        drops[i] = 0;
+      }
+      drops[i]++;
+    });
+  }
+
+  setInterval(draw, 40);
+
+  window.addEventListener("resize", () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    columns = Math.floor(canvas.width / fontSize);
+    drops = new Array(columns).fill(1);
+  });
+
+  // ===== Term tab switching =====
+  document.querySelectorAll(".term-tabs").forEach((group) => {
+    const buttons = group.querySelectorAll(".term-btn");
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        buttons.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        const panels = group.parentElement.querySelectorAll(".term-panel");
+        panels.forEach((p) => p.classList.remove("active"));
+        document.getElementById(btn.dataset.target).classList.add("active");
+      });
+    });
+  });
+</script>
+
 </body>
 </html>
