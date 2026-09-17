@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Victor dos Santos Buza | vj</title>
+<style>
+  :root {
+    --bg: #0a0e0a;
+    --panel: #0d1510;
+    --green: #00ff41;
+    --green-dim: #0a8f2c;
+    --green-faint: #05451a;
+    --text: #c8ffd4;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Courier New", Consolas, monospace;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ===== Matrix rain background ===== */
+  #matrix {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+    opacity: 0.35;
+  }
+
+  .content { position: relative; z-index: 1; }
+
+  /* ===== Navbar ===== */
+  nav {
+    position: sticky;
+    top: 0;
+    background: rgba(5, 10, 6, 0.9);
+    border-bottom: 1px solid var(--green-dim);
+    backdrop-filter: blur(4px);
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    padding: 16px;
+    flex-wrap: wrap;
+  }
+
+  nav a {
+    color: var(--green);
+    text-decoration: none;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    text-shadow: 0 0 6px var(--green-dim);
+    transition: 0.2s;
+  }
+
+  nav a:hover {
+    color: #fff;
+    text-shadow: 0 0 12px var(--green);
+  }
+
+  /* ===== Section shell ===== */
+  section {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 80px 24px;
+    border-bottom: 1px dashed var(--green-faint);
+  }
+
+  .tag {
+    color: var(--green-dim);
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    margin-bottom: 8px;
+  }
+
+  h1, h2 {
+    color: var(--green);
+    text-shadow: 0 0 10px rgba(0,255,65,0.4);
+  }
+
+  /* ===== Home ===== */
+  #home {
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-bottom: none;
+  }
+
+  .terminal-box {
+    border: 1px solid var(--green-dim);
+    background: rgba(0, 20, 8, 0.6);
+    padding: 24px 32px;
+    border-radius: 4px;
+    box-shadow: 0 0 24px rgba(0,255,65,0.15);
+  }
+
+  .prompt::before {
+    content: "> ";
+    color: var(--green-dim);
+  }
+
+  h1#name {
+    font-size: 2.4rem;
+    margin: 10px 0;
+  }
+
+  .cursor {
+    display: inline-block;
+    width: 10px;
+    background: var(--green);
+    animation: blink 1s steps(1) infinite;
+    margin-left: 4px;
+  }
+
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+
+  .subtitle {
+    color: var(--green-dim);
+    letter-spacing: 2px;
+  }
+
+  /* ===== About ===== */
+  .about-grid {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .about-text { flex: 1; min-width: 260px; }
+
+  .avatar {
+    width: 160px;
+    height: 160px;
+    border: 2px solid var(--green-dim);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: var(--green);
+    box-shadow: 0 0 20px rgba(0,255,65,0.2);
+    background: #061008;
+  }
+
+  .quote {
+    margin-top: 18px;
+    padding-left: 14px;
+    border-left: 3px solid var(--green-dim);
+    color: var(--green-dim);
+    font-style: italic;
+  }
+
+  /* ===== Term cards (Quiz / Exam / Lab) ===== */
+  .term-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+
+  .term-btn {
+    background: transparent;
+    border: 1px solid var(--green-dim);
+    color: var(--green-dim);
+    padding: 8px 16px;
+    cursor: pointer;
+    font-family: inherit;
+    letter-spacing: 1px;
+    border-radius: 3px;
+  }
+
+  .term-btn.active {
+    background: var(--green-dim);
+    color: #000;
+    font-weight: bold;
+  }
+
+  .term-panel { display: none; }
+  .term-panel.active { display: block; animation: fadeIn 0.3s ease; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .record {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid var(--green-faint);
+    background: rgba(0, 20, 8, 0.4);
+    padding: 14px 18px;
+    border-radius: 4px;
+    margin-bottom: 12px;
+  }
+
+  .record .label { color: var(--text); }
+  .record .score { color: var(--green); font-weight: bold; }
+  .record .date { color: var(--green-dim); font-size: 0.8rem; }
+
+  .record a {
+    color: var(--green);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--green-dim);
+  }
+
+  footer {
+    text-align: center;
+    padding: 30px;
+    color: var(--green-dim);
+    font-size: 0.8rem;
+    position: relative;
+    z-index: 1;
+  }
+</style>
+</head>
+<body>
+
+<canvas id="matrix"></canvas>
+
+<div class="content">
+
+<nav>
+  <a href="#home">HOME</a>
+  <a href="#about">ABOUT ME</a>
+  <a href="#quiz">QUIZ</a>
+  <a href="#exam">EXAM</a>
+  <a href="#lab">LAB</a>
+</nav>
+
+<!-- ===================== HOME ===================== -->
+<section id="home">
+  <div class="terminal-box">
+    <p class="prompt">whoami</p>
+    <h1 id="name">VICTOR DOS SANTOS BUZA</h1>
+    <p class="subtitle">BS Computer Science &mdash; Portfolio</p>
+  </div>
+</section>
+
+<!-- ===================== ABOUT ===================== -->
+<section id="about">
+  <p class="tag">// ABOUT ME</p>
+  <h2>Who I Am</h2>
+  <div class="about-grid" style="margin-top: 20px;">
+    <div class="avatar">VB</div>
+    <div class="about-text">
+      <p>
+        Hi, I'm <strong>Victor dos Santos Buza</strong>, a BS Computer Science
+        student. Replace this paragraph with a couple of sentences about your
+        interests &mdash; e.g. programming, cybersecurity, game dev, whatever
+        you're into.
+      </p>
+      <p style="margin-top: 12px;">
+        Add a second paragraph here about what you enjoy learning, building,
+        or exploring in tech.
+      </p>
+      <p class="quote">
+        "Replace this with a quote you like." &mdash; Someone
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== QUIZ ===================== -->
+<section id="quiz">
+  <p class="tag">// QUIZ RECORDS</p>
+  <h2>Quiz Scores</h2>
+
+  <div class="term-tabs" data-group="quiz">
+    <button class="term-btn active" data-target="quiz-prelim">PRELIM</button>
+    <button class="term-btn" data-target="quiz-midterm">MIDTERM</button>
+    <button class="term-btn" data-target="quiz-finals">FINALS</button>
+  </div>
+
+  <div class="term-panel active" id="quiz-prelim">
+    <div class="record">
+      <span class="label">QUIZ 1 (ONLINE)</span>
+      <span class="score">— / 20</span>
+      <span class="date">DATE HERE</span>
+    </div>
+  </div>
+  <div class="term-panel" id="quiz-midterm">
+    <div class="record">
+      <span class="label">QUIZ 1</span>
+      <span class="score">—</span>
+      <span class="date">—</span>
+    </div>
+  </div>
+  <div class="term-panel" id="quiz-finals">
+    <div class="record">
+      <span class="label">QUIZ 1</span>
+      <span class="score">—</span>
+      <span class="date">—</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== EXAM ===================== -->
+<section id="exam">
+  <p class="tag">// EXAM RECORDS</p>
+  <h2>Exams</h2>
+
+  <div class="term-tabs" data-group="exam">
+    <button class="term-btn active" data-target="exam-prelim">PRELIM</button>
+    <button class="term-btn" data-target="exam-midterm">MIDTERM</button>
+    <button class="term-btn" data-target="exam-finals">FINALS</button>
+  </div>
+
+  <div class="term-panel active" id="exam-prelim">
+    <div class="record">
+      <span class="label">PRELIM EXAM</span>
+      <span class="score">— / 100</span>
+      <span class="date">DATE HERE</span>
+    </div>
+  </div>
+  <div class="term-panel" id="exam-midterm">
+    <div class="record">
+      <span class="label">MIDTERM EXAM</span>
+      <span class="score">—</span>
+      <span class="date">—</span>
+    </div>
+  </div>
+  <div class="term-panel" id="exam-finals">
+    <div class="record">
+      <span class="label">FINAL EXAM</span>
+      <span class="score">—</span>
+      <span class="date">—</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== LAB ===================== -->
+<section id="lab" style="border-bottom: none;">
+  <p class="tag">// LABORATORY</p>
+  <h2>Laboratory Work</h2>
+
+  <div class="term-tabs" data-group="lab">
+    <button class="term-btn active" data-target="lab-prelim">PRELIM</button>
+    <button class="term-btn" data-target="lab-midterm">MIDTERM</button>
+    <button class="term-btn" data-target="lab-finals">FINALS</button>
+  </div>
+
+  <div class="term-panel active" id="lab-prelim">
+    <div class="record">
+      <span class="label">LAB NO. 1</span>
+      <a href="#" target="_blank">Open file &rarr;</a>
+    </div>
+  </div>
+  <div class="term-panel" id="lab-midterm">
+    <div class="record">
+      <span class="label">LAB NO. 1</span>
+      <a href="#" target="_blank">Open file &rarr;</a>
+    </div>
+  </div>
+  <div class="term-panel" id="lab-finals">
+    <div class="record">
+      <span class="label">LAB NO. 1</span>
+      <a href="#" target="_blank">Open file &rarr;</a>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<footer>
+  &lt;/&gt; Victor dos Santos Buza &mdash; BSCS Portfolio
+</footer>
+
+<script>
+  // ===== Matrix rain effect =====
+  const canvas = document.getElementById("matrix");
+  const ctx = canvas.getContext("2d");
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const chars = "01アイウエオカキクケコサシスセソABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  const fontSize = 16;
+  let columns = Math.floor(canvas.width / fontSize);
+  let drops = new Array(columns).fill(1);
+
+  function draw() {
+    ctx.fillStyle = "rgba(10, 14, 10, 0.08)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "#00ff41";
+    ctx.font = fontSize + "px monospace";
+
+    drops.forEach((y, i) => {
+      const text = chars[Math.floor(Math.random() * chars.length)];
+      ctx.fillText(text, i * fontSize, y * fontSize);
+      if (y * fontSize > canvas.height && Math.random() > 0.975) {
+        drops[i] = 0;
+      }
+      drops[i]++;
+    });
+  }
+
+  setInterval(draw, 40);
+
+  window.addEventListener("resize", () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    columns = Math.floor(canvas.width / fontSize);
+    drops = new Array(columns).fill(1);
+  });
+
+  // ===== Term tab switching =====
+  document.querySelectorAll(".term-tabs").forEach((group) => {
+    const buttons = group.querySelectorAll(".term-btn");
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        buttons.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        const panels = group.parentElement.querySelectorAll(".term-panel");
+        panels.forEach((p) => p.classList.remove("active"));
+        document.getElementById(btn.dataset.target).classList.add("active");
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
