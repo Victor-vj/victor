@@ -212,6 +212,31 @@
   .record .score { color: var(--green); font-weight: bold; }
   .record .date { color: var(--green-dim); font-size: 0.8rem; }
 
+  .record {
+    flex-wrap: wrap;
+    row-gap: 8px;
+  }
+
+  .record-info {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .proof-link {
+    color: var(--green);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--green-dim);
+    font-size: 0.8rem;
+    white-space: nowrap;
+    margin-left: auto;
+  }
+
+  .proof-link:hover {
+    color: #fff;
+  }
+
   .record a {
     color: var(--green);
     text-decoration: none;
@@ -286,38 +311,56 @@
 
   <div class="term-panel active" id="quiz-prelim">
     <div class="record">
-      <span class="label">QUIZ 1 (ONLINE)</span>
-      <span class="score">— / 20</span>
-      <span class="date">Sep 8</span>
+      <div class="record-info">
+        <span class="label">QUIZ 1 (ONLINE)</span>
+        <span class="score">— / 20</span>
+        <span class="date">Sep 8</span>
+      </div>
+      <a class="proof-link" href="Long-Quiz.png" target="_blank">Proof &rarr;</a>
     </div>
     <div class="record">
-      <span class="label">QUIZ 2 - VIRTUALIZATION</span>
-      <span class="score">19 / 20</span>
-      <span class="date">Sep 8</span>
+      <div class="record-info">
+        <span class="label">QUIZ 2 - VIRTUALIZATION</span>
+        <span class="score">19 / 20</span>
+        <span class="date">Sep 8</span>
+      </div>
+      <a class="proof-link" href="#" target="_blank">Proof &rarr;</a>
     </div>
     <div class="record">
-      <span class="label">QUIZ 3 - VIRTUAL MACHINE</span>
-      <span class="score">16 / 20</span>
-      <span class="date">Sep 8</span>
+      <div class="record-info">
+        <span class="label">QUIZ 3 - VIRTUAL MACHINE</span>
+        <span class="score">16 / 20</span>
+        <span class="date">Sep 8</span>
+      </div>
+      <a class="proof-link" href="Long Quiz.png" target="_blank">Proof &rarr;</a>
     </div>
     <div class="record">
-      <span class="label">LONG QUIZ</span>
-      <span class="score">31 / 40</span>
-      <span class="date"> Sep 8 </span>
+      <div class="record-info">
+        <span class="label">LONG QUIZ</span>
+        <span class="score">31 / 40</span>
+        <span class="date"> Sep 8 </span>
+      </div>
+      <a class="proof-link" href="Long%20Quiz.png" target="_blank">Proof &rarr;</a>
     </div>
   </div>
   <div class="term-panel" id="quiz-midterm">
     <div class="record">
-      <span class="label">QUIZ 1</span>
-      <span class="score">—</span>
-      <span class="date">—</span>
+      <div class="record-info">
+        <span class="label">QUIZ 1</span>
+        <span class="score">—</span>
+        <span class="date">—</span>
+      </div>
+      <a class="proof-link" href="#" target="_blank">Proof &rarr;</a>
     </div>
   </div>
   <div class="term-panel" id="quiz-finals">
     <div class="record">
-      <span class="label">QUIZ 1</span>
-      <span class="score">—</span>
-      <span class="date">—</span>
+      <div class="record-info">
+        <span class="label">QUIZ 1</span>
+        <span class="score">—</span>
+        <span class="date">—</span>
+      </div>
+      <a class="proof-link" href="#" target="_blank">Proof &rarr;</a>
     </div>
   </div>
 </section>
@@ -335,23 +378,32 @@
 
   <div class="term-panel active" id="exam-prelim">
     <div class="record">
-      <span class="label">PRELIM EXAM</span>
-      <span class="score"> 54 / 70</span>
-      <span class="date">DATE HERE</span>
+      <div class="record-info">
+        <span class="label">PRELIM EXAM</span>
+        <span class="score"> 54/ 70</span>
+        <span class="date">DATE HERE</span>
+      </div>
+      <a class="proof-link" href="#" target="_blank">Proof &rarr;</a>
     </div>
   </div>
   <div class="term-panel" id="exam-midterm">
     <div class="record">
-      <span class="label">MIDTERM EXAM</span>
-      <span class="score">—</span>
-      <span class="date">—</span>
+      <div class="record-info">
+        <span class="label">MIDTERM EXAM</span>
+        <span class="score">—</span>
+        <span class="date">—</span>
+      </div>
+      <a class="proof-link" href="#" target="_blank">Proof &rarr;</a>
     </div>
   </div>
   <div class="term-panel" id="exam-finals">
     <div class="record">
-      <span class="label">FINAL EXAM</span>
-      <span class="score">—</span>
-      <span class="date">—</span>
+      <div class="record-info">
+        <span class="label">FINAL EXAM</span>
+        <span class="score">—</span>
+        <span class="date">—</span>
+      </div>
+      <a class="proof-link" href="#" target="_blank">Proof &rarr;</a>
     </div>
   </div>
 </section>
